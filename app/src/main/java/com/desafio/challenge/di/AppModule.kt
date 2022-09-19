@@ -7,5 +7,4 @@ import org.koin.dsl.module
 
 val appModule = module {
     single<String>(named(name = Properties.BASE_URL)){getProperty(Properties.BASE_URL)}
-//    single{JacksonConfig.createObjectMapper()}
 }

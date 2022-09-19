@@ -9,8 +9,8 @@ val dataModule = module {
 
     single<Service> {
         RetrofitConfig.create(
-//            objectMapper = get(),
-            baseUrl = getProperty(BASE_URL)
+            baseUrl = "https://raw.githubusercontent.com/centraldedados/codigos_postais/"
+//            getProperty(BASE_URL)
         )
     }
 }
