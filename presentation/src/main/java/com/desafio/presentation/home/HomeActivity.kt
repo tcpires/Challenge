@@ -31,15 +31,13 @@ class HomeActivity : AppCompatActivity() {
                 }
             }
         }
-
+        homeViewModel.getPostalCodes()
         observeData()
 
     }
 
     private fun observeData() {
         homeViewModel.postalCodes.observeNotNull(this) {
-            it.resources
-            Toast.makeText(this, it.resources[0].name, Toast.LENGTH_LONG).show()
         }
     }
 }

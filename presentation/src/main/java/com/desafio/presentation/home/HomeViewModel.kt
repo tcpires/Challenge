@@ -1,8 +1,7 @@
 package com.desafio.presentation.home
 
+import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.liveData
-import androidx.lifecycle.switchMap
 import com.desafio.domain.interactor.PostalCodeUseCase
 import com.desafio.presentation.ui.base.BaseViewModel
 
@@ -10,23 +9,19 @@ class HomeViewModel(
     private val postalCodeUseCase: PostalCodeUseCase
 ) : BaseViewModel() {
 
-    private val retry = MutableLiveData<Boolean>(false)
-    val loading = MutableLiveData<Boolean>(true)
+    val postalCodes = MutableLiveData<ByteArray>()
+    val loading = MutableLiveData<Boolean>(false)
 
-    val postalCodes = retry.switchMap {
-        liveData {
-            safeCoroutinesCall {
-                postalCodeUseCase.getPostalCodes()
-            }.coEither(
-                error = {
-                    loading.value = false
-                    // Do error handling
-                },
-                success = {
-                    loading.value = false
-                    emit(it)
-                }
-            )
-        }
+    fun getPostalCodes() {
+        loading.value = true
+        subscribeSingle(
+            observable = postalCodeUseCase.downloadPostalCodesCvs(),
+            success = {
+                loading.value = false
+                postalCodes.value = it.data},
+            error = {
+                loading.value = false
+            }
+        )
     }
 }
