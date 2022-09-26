@@ -39,34 +39,25 @@ android {
 
 dependencies {
 
-    implementation 'androidx.core:core-ktx:1.7.0'
-    implementation 'androidx.appcompat:appcompat:1.5.1'
-    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.5.1'
-    implementation 'com.google.android.material:material:1.6.1'
-    implementation 'androidx.appcompat:appcompat:1.5.1'
-    implementation 'io.insert-koin:koin-core:3.2.0'
-    implementation 'io.insert-koin:koin-android:3.2.0'
+    implementation libs.ktx.core
+    implementation libs.appCompat
+    implementation libs.android.lifecycle
+    implementation libs.materialdesign
+    implementation libs.koin.core
+    implementation libs.koin.android
 
-    def compose = "1.3.0-beta02"
-    implementation "androidx.compose.ui:ui:$compose"
-    implementation "androidx.compose.foundation:foundation:$compose"
-    implementation "androidx.compose.runtime:runtime-livedata:$compose"
-    implementation "androidx.compose.runtime:runtime-rxjava2:$compose"
-    implementation "androidx.compose.material:material:$compose"
-    implementation "androidx.compose.material:material-icons-core:$compose"
-    implementation "androidx.compose.material:material-icons-extended:$compose"
+    implementation libs.bundles.composeEssencials
 
-    implementation "com.google.accompanist:accompanist-appcompat-theme:0.25.1"
+    implementation libs.accompanist
 
-    implementation 'io.reactivex.rxjava3:rxandroid:3.0.0'
-    implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
-    implementation 'io.reactivex.rxjava3:rxjava:3.0.0'
+    implementation libs.rxandroid3
+    implementation libs.rxandroid2
+    implementation libs.rxjava3
 
-    testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
-    androidTestImplementation 'androidx.compose.ui:ui-test-junit4:1.2.1'
-
+    testImplementation libs.junit
+    androidTestImplementation libs.expresso
+    androidTestImplementation libs.compose.ui.test
+    androidTestImplementation libs.junit.androidx
 
     implementation project(':domain')
 }
